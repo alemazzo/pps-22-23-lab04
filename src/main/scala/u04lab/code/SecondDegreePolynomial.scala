@@ -27,7 +27,12 @@ case class SecondDegreePolynomialImpl(
       this.secondDegree + polynomial.secondDegree
     )
 
-  override def -(polynomial: SecondDegreePolynomial): SecondDegreePolynomial = ???
+  override def -(polynomial: SecondDegreePolynomial): SecondDegreePolynomial =
+    SecondDegreePolynomial(
+      this.constant - polynomial.constant,
+      this.firstDegree - polynomial.firstDegree,
+      this.secondDegree - polynomial.secondDegree
+    )
 
 
 @main def checkComplex(): Unit =
