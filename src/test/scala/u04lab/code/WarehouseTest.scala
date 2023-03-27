@@ -67,8 +67,13 @@ class WarehouseTest:
     val item2 = Item(2, "Item2", "tag1", "tag3")
     warehouse.store(item1)
     warehouse.store(item2)
-    assertTrue(warehouse.contains(item1.code))
-    assertTrue(warehouse.contains(item2.code))
+    assertTrue(contains(warehouse.searchItems("tag1"), item1))
+    assertTrue(contains(warehouse.searchItems("tag1"), item2))
+    assertTrue(contains(warehouse.searchItems("tag2"), item1))
+    assertFalse(contains(warehouse.searchItems("tag2"), item2))
+    assertTrue(contains(warehouse.searchItems("tag3"), item2))
+    assertFalse(contains(warehouse.searchItems("tag3"), item1))
+
 
 
 
