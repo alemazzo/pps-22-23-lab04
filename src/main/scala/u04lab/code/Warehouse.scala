@@ -7,8 +7,12 @@ trait Item {
 }
 
 object Item:
-  def apply(code: Int, name: String, tags: List[String] = List.empty): Item = ???
+  def apply(code: Int, name: String, tags: List[String] = List.empty): Item = ItemImpl(code, name, tags)
 
+case class ItemImpl(
+                     override val code: Int,
+                     override val name: String,
+                     override val tags: List[String]) extends Item
 /**
  * A warehouse is a place where items are stored.
  */
@@ -44,8 +48,18 @@ trait Warehouse {
 }
 
 object Warehouse {
-  def apply(): Warehouse = ???
+  def apply(): Warehouse = WarehouseImpl()
 }
+
+class WarehouseImpl extends Warehouse:
+
+  override def store(item: Item): Unit = ???
+  override def searchItems(tag: String): List[Item] = ???
+  override def retrieve(code: Int): Option[Item] = ???
+  override def remove(item: Item): Unit = ???
+  override def contains(itemCode: Int): Boolean = ???
+
+
 
 @main def mainWarehouse(): Unit =
   val warehouse = Warehouse()
