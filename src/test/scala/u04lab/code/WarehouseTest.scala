@@ -26,6 +26,13 @@ class WarehouseTest:
     val items = warehouse.searchItems("tag1")
     assertEquals(1, length(items))
 
+  @Test def testSearchItemsNotFound() =
+    val warehouse = Warehouse()
+    for i <- 1 to 10 do
+      warehouse.store(Item(i, s"Item$i", cons(s"tag$i", Nil())))
+    val items = warehouse.searchItems("tag11")
+    assertEquals(0, length(items))
+
   @Test def testRetrieveItem() =
     val warehouse = Warehouse()
     val item = Item(1, "Item1", cons("tag1", cons("tag2", Nil())))
@@ -33,6 +40,11 @@ class WarehouseTest:
     val retrievedItem = warehouse.retrieve(item.code)
     assertFalse(isEmpty(retrievedItem))
     assertEquals(item, orElse(retrievedItem, null))
+
+  @Test def testRetrieveItemNotFound() =
+    val warehouse = Warehouse()
+    val retrievedItem = warehouse.retrieve(1)
+    assertTrue(isEmpty(retrievedItem))
 
 
 
