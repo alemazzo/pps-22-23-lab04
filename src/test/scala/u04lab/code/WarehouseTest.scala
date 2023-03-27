@@ -61,6 +61,16 @@ class WarehouseTest:
     warehouse.remove(item2)
     assertTrue(warehouse.contains(item.code))
 
+  @Test def testCreateWithVarArgs() =
+    val warehouse = Warehouse()
+    val item1 = Item(1, "Item1", "tag1", "tag2")
+    val item2 = Item(2, "Item2", "tag1", "tag3")
+    warehouse.store(item1)
+    warehouse.store(item2)
+    assertTrue(warehouse.contains(item1.code))
+    assertTrue(warehouse.contains(item2.code))
+
+
 
 
 

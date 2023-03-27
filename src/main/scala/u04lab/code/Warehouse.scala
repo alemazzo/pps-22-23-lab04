@@ -10,6 +10,8 @@ trait Item {
 object Item:
   def apply(code: Int, name: String, tags: List[String] = List.empty): Item = ItemImpl(code, name, tags)
 
+  def apply(code: Int, name: String, tags: String*): Item = ItemImpl(code, name, tags.foldRight(Nil())((x, y) => Cons(x, y)))
+
 case class ItemImpl(
                      override val code: Int,
                      override val name: String,
