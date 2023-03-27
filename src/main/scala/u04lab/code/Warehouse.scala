@@ -8,9 +8,11 @@ trait Item {
 }
 
 object Item:
-  def apply(code: Int, name: String, tags: List[String] = List.empty): Item = ItemImpl(code, name, tags)
+  def apply(code: Int, name: String, tags: List[String] = List.empty): Item =
+    ItemImpl(code, name, tags)
 
-  def apply(code: Int, name: String, tags: String*): Item = ItemImpl(code, name, tags.foldRight(Nil())(Cons(_, _)))
+  def apply(code: Int, name: String, tags: String*): Item =
+    this.apply(code, name, tags.foldRight(Nil[String]())(Cons(_, _)))
 
 case class ItemImpl(
                      override val code: Int,
