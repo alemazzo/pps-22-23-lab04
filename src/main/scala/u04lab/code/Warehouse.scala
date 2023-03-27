@@ -58,8 +58,10 @@ class WarehouseImpl extends Warehouse:
 
   override def store(item: Item): Unit =
     items = cons(item, items)
-    
-  override def searchItems(tag: String): List[Item] = ???
+
+  override def searchItems(tag: String): List[Item] =
+    filter(items)(x => List.contains(x.tags, tag))
+
   override def retrieve(code: Int): Option[Item] = ???
   override def remove(item: Item): Unit = ???
   override def contains(itemCode: Int): Boolean =

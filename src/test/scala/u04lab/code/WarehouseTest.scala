@@ -18,4 +18,11 @@ class WarehouseTest:
     warehouse.store(item)
     assertTrue(warehouse.contains(item.code))
 
+  @Test def testSearchItems() =
+    val warehouse = Warehouse()
+    for i <- 1 to 10 do
+      warehouse.store(Item(i, s"Item$i", cons(s"tag$i", Nil())))
+    val items = warehouse.searchItems("tag1")
+    assertEquals(1, length(items))
+
 
