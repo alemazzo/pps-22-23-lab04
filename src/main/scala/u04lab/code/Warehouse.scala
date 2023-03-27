@@ -1,5 +1,6 @@
 package u04lab.code
 import List.*
+import u04lab.code.Option.isEmpty
 trait Item {
   def code: Int
   def name: String
@@ -53,11 +54,16 @@ object Warehouse {
 
 class WarehouseImpl extends Warehouse:
 
-  override def store(item: Item): Unit = ???
+  var items: List[Item] = List.empty
+
+  override def store(item: Item): Unit =
+    items = cons(item, items)
+    
   override def searchItems(tag: String): List[Item] = ???
   override def retrieve(code: Int): Option[Item] = ???
   override def remove(item: Item): Unit = ???
-  override def contains(itemCode: Int): Boolean = ???
+  override def contains(itemCode: Int): Boolean =
+    !isEmpty(find(items)(_.code == itemCode))
 
 
 
