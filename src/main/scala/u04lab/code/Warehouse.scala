@@ -65,7 +65,9 @@ class WarehouseImpl extends Warehouse:
   override def retrieve(code: Int): Option[Item] =
     find(items)(_.code == code)
 
-  override def remove(item: Item): Unit = ???
+  override def remove(item: Item): Unit =
+    items = filter(items)(_ != item)
+
   override def contains(itemCode: Int): Boolean =
     !isEmpty(find(items)(_.code == itemCode))
 

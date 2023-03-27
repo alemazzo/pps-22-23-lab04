@@ -46,6 +46,13 @@ class WarehouseTest:
     val retrievedItem = warehouse.retrieve(1)
     assertTrue(isEmpty(retrievedItem))
 
+  @Test def testRemoveItem() =
+    val warehouse = Warehouse()
+    val item = Item(1, "Item1", cons("tag1", cons("tag2", Nil())))
+    warehouse.store(item)
+    warehouse.remove(item)
+    assertFalse(warehouse.contains(item.code))
+
 
 
 
