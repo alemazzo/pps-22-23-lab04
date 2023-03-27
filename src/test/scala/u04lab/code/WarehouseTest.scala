@@ -53,6 +53,14 @@ class WarehouseTest:
     warehouse.remove(item)
     assertFalse(warehouse.contains(item.code))
 
+  @Test def testRemoveItemNotFound() =
+    val warehouse = Warehouse()
+    val item = Item(1, "Item1", cons("tag1", cons("tag2", Nil())))
+    val item2 = Item(2, "Item2", cons("tag1", cons("tag2", Nil())))
+    warehouse.store(item)
+    warehouse.remove(item2)
+    assertTrue(warehouse.contains(item.code))
+
 
 
 
