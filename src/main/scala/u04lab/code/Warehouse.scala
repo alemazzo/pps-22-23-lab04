@@ -54,7 +54,7 @@ object Warehouse {
 
 class WarehouseImpl extends Warehouse:
 
-  var items: List[Item] = List.empty
+  private var items: List[Item] = List.empty
 
   override def store(item: Item): Unit =
     items = cons(item, items)
@@ -62,7 +62,9 @@ class WarehouseImpl extends Warehouse:
   override def searchItems(tag: String): List[Item] =
     filter(items)(x => List.contains(x.tags, tag))
 
-  override def retrieve(code: Int): Option[Item] = ???
+  override def retrieve(code: Int): Option[Item] =
+    find(items)(_.code == code)
+
   override def remove(item: Item): Unit = ???
   override def contains(itemCode: Int): Boolean =
     !isEmpty(find(items)(_.code == itemCode))
