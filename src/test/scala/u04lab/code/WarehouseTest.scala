@@ -1,7 +1,6 @@
 package u04lab.code
 
-import junit.framework.Assert
-import junit.framework.Assert.{assertEquals, assertFalse, assertNotNull, assertTrue}
+import org.junit.Assert.*
 import org.junit.Test
 import u04lab.code.List
 import u04lab.code.List.*
