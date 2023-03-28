@@ -67,12 +67,12 @@ class WarehouseTest:
     val item2 = Item(2, "Item2", "tag1", "tag3")
     warehouse.store(item1)
     warehouse.store(item2)
-    assertTrue(contains(warehouse.searchItems("tag1"), item1))
-    assertTrue(contains(warehouse.searchItems("tag1"), item2))
-    assertTrue(contains(warehouse.searchItems("tag2"), item1))
-    assertFalse(contains(warehouse.searchItems("tag2"), item2))
-    assertTrue(contains(warehouse.searchItems("tag3"), item2))
-    assertFalse(contains(warehouse.searchItems("tag3"), item1))
+    val expectedTag1Items = cons(item2, cons(item1, Nil()))
+    val expectedTag2Items = cons(item1, Nil())
+    val expectedTag3Items = cons(item2, Nil())
+    assertEquals(expectedTag1Items, warehouse.searchItems("tag1"))
+    assertEquals(expectedTag2Items, warehouse.searchItems("tag2"))
+    assertEquals(expectedTag3Items, warehouse.searchItems("tag3"))
 
 
 

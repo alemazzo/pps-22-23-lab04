@@ -12,7 +12,7 @@ object Item:
     ItemImpl(code, name, tags)
 
   def apply(code: Int, name: String, tags: String*): Item =
-    this.apply(code, name, tags.foldRight(Nil[String]())(Cons(_, _)))
+    this.apply(code, name, tags.foldRight(Nil[String]())(cons))
 
 case class ItemImpl(
                      override val code: Int,
