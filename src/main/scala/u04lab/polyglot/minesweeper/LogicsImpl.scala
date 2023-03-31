@@ -5,7 +5,6 @@ import u04lab.code.{List, Option}
 import u04lab.code.Option.{Some, None}
 import u04lab.code.List.{append, cons, contains, filter, find, length, map}
 
-
 case class Cell(position: Position, mine: Boolean, revealed: Boolean = false, flagged: Boolean = false):
   def reveal: Cell = this.copy(revealed = true)
   def flag: Cell = this.copy(flagged = !flagged)
@@ -18,20 +17,18 @@ object Cell:
 
 class LogicsImpl(val size: Int, mines: Int) extends Logics:
 
-  private var cells: List[Cell] = {
+  private var cells: List[Cell] =
     val positions = getRandomPositions(mines)
     var elems = List.empty[Cell]
-    0 until size flatMap (
-      x => 0 until size map (
-        y =>
-          if contains(positions, Position(x, y)) then
-            elems = cons(Cell.mine(Position(x, y)), elems)
-          else
-            elems = cons(Cell.empty(Position(x, y)), elems)
+    0 until size map (x =>
+      0 until size map (y =>
+        if contains(positions, Position(x, y)) then
+          elems = cons(Cell.mine(Position(x, y)), elems)
+        else
+          elems = cons(Cell.empty(Position(x, y)), elems)
       )
     )
     elems
-  }
 
   private def getRandomPositions(amount: Int): List[Position] =
     val random = scala.util.Random
